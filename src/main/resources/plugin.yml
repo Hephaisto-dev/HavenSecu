@@ -4,3 +4,8 @@ main: fr.hephaisto.havensecu.HavenSecu
 api-version: 1.14
 authors: [Hephaisto]
 description: Plugin de portes en fer sécurisée
+commands:
+  protectdoor:
+    description: permet de rajouter une porte sécurisée en fer
+  givekey:
+    description: permet de se give une clef du niveau désiré
