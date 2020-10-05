@@ -71,7 +71,7 @@ public class Managers {
                 instance.getConfig().set(path+".coordonnees_" + i + ".Niveau", level);
                 instance.saveConfig();
                 instance.reloadConfig();
-                player.sendMessage("§aVotre nouveau porte a été enregistré avec succès en "+x+" "+y+""+z);
+                player.sendMessage("§aVotre nouvelle porte a été enregistrée avec succès en "+x+" "+y+""+z);
                 Door door = new Door(new Location(loc.getWorld(),x,y,z),i,level);
                 doors.add(door);
                 break;
