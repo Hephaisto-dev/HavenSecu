@@ -1,0 +1,6 @@
+name: HavenSecu
+version: ${project.version}
+main: fr.hephaisto.havensecu.HavenSecu
+api-version: 1.14
+authors: [Hephaisto]
+description: Plugin de portes en fer sécurisée
