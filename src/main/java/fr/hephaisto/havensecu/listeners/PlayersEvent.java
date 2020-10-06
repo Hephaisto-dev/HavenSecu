@@ -4,6 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.data.type.Door;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -19,10 +20,13 @@ public class PlayersEvent implements Listener {
             Location location1 = new Location(location.getWorld(),location.getX(),location.getY()-1,location.getZ());
             Managers m = Managers.getManagers();
             if (location1.getBlock().getType() == Material.IRON_DOOR){
-                e.setCancelled(m.checkAllowed(location1,e.getPlayer()));
+                m.openCloseDoor(location1,m.checkAllowed(location1,e.getPlayer()));
+                e.setCancelled(true);
+
             }
             else if (location1.getBlock().getType() != Material.IRON_DOOR){
-                e.setCancelled(m.checkAllowed(location,e.getPlayer()));
+                m.openCloseDoor(location,m.checkAllowed(location,e.getPlayer()));
+                e.setCancelled(true);
             }
         }
     }

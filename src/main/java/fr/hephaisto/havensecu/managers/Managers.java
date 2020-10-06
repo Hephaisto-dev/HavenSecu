@@ -3,9 +3,14 @@ package fr.hephaisto.havensecu.managers;
 import fr.hephaisto.havensecu.Door;
 import fr.hephaisto.havensecu.HavenSecu;
 import org.bukkit.*;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.data.Openable;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.material.MaterialData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,8 +94,11 @@ public class Managers {
             if (stack.getItemMeta().getEnchants().containsKey(Enchantment.DURABILITY)){
                 int doorlevel = getDoorByLocation(location).getLevel();
                 int tripwirelevel = stack.getItemMeta().getEnchantLevel(Enchantment.DURABILITY);
-                return doorlevel <= tripwirelevel;
+                return doorlevel >= tripwirelevel;
             }
+        }
+        else{
+            return false;
         }
         return true;
     }
@@ -116,8 +124,21 @@ public class Managers {
     public boolean checkAllowed(Location location, Player player1){
         if (isDoorOpenNotAllowed(location, player1)) {
             player1.sendMessage(ChatColor.RED + "Vous n'avez pas la bonne clef");
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
+
+    public void openCloseDoor (Location location, boolean make){
+        if (make) {
+            Location location1 = new Location(location.getWorld(), location.getX(), location.getY() - 2, location.getZ());
+            if (location1.getBlock().getType() == Material.REDSTONE_TORCH){
+                location1.getBlock().setType(Material.DIRT);
+            }
+            else {
+                location1.getBlock().setType(Material.REDSTONE_TORCH);
+            }
+        }
+    }
+
 }
