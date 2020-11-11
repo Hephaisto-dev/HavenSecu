@@ -1,6 +1,7 @@
 package fr.hephaisto.havensecu.commands;
 
 import fr.hephaisto.havensecu.managers.Managers;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -25,10 +26,12 @@ public class CommandGiveKey implements CommandExecutor {
                 int level = Integer.parseInt(args[0]);
                 ItemStack stack = new ItemStack(Material.TRIPWIRE_HOOK);
                 ItemMeta meta = stack.getItemMeta();
+                meta.setDisplayName("Clé niveau "+level);
                 meta.addEnchant(Enchantment.DURABILITY,level,true);
                 meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
                 stack.setItemMeta(meta);
                 player.getInventory().addItem(stack);
+                player.sendMessage(ChatColor.GREEN + "Don d'une clé de niveau "+level);
             }else{
                 player.sendMessage("§cVous n'avez pas la permission d'executer cette commande !");
             } return false;

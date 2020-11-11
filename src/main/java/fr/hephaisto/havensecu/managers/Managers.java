@@ -76,7 +76,7 @@ public class Managers {
                 instance.getConfig().set(path+".coordonnees_" + i + ".Niveau", level);
                 instance.saveConfig();
                 instance.reloadConfig();
-                player.sendMessage("§aVotre nouvelle porte a été enregistrée avec succès en "+x+" "+y+""+z);
+                player.sendMessage("§aVotre nouvelle porte a été enregistrée avec succès en "+x+" "+y+" "+z+" de niveau "+level);
                 Door door = new Door(new Location(loc.getWorld(),x,y,z),i,level);
                 doors.add(door);
                 break;
@@ -94,7 +94,9 @@ public class Managers {
             if (stack.getItemMeta().getEnchants().containsKey(Enchantment.DURABILITY)){
                 int doorlevel = getDoorByLocation(location).getLevel();
                 int tripwirelevel = stack.getItemMeta().getEnchantLevel(Enchantment.DURABILITY);
-                return doorlevel >= tripwirelevel;
+                if(doorlevel == tripwirelevel || doorlevel < tripwirelevel){
+                    return false;
+                }
             }
         }
         else{
