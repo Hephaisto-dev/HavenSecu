@@ -24,7 +24,7 @@ public class CommandGiveKey implements CommandExecutor {
                     return false;
                 }
                 int level = Integer.parseInt(args[0]);
-                ItemStack stack = new ItemStack(Material.TRIPWIRE_HOOK);
+                ItemStack stack = new ItemStack(Material.MAGENTA_DYE);
                 ItemMeta meta = stack.getItemMeta();
                 meta.setDisplayName("Clé niveau "+level);
                 meta.addEnchant(Enchantment.DURABILITY,level,true);

@@ -90,7 +90,7 @@ public class Managers {
             return false;
         }
         ItemStack stack = player.getInventory().getItemInMainHand();
-        if (stack.getType() == Material.TRIPWIRE || stack.getType() == Material.TRIPWIRE_HOOK) {
+        if (stack.getType() == Material.MAGENTA_DYE) {
             if (stack.getItemMeta().getEnchants().containsKey(Enchantment.DURABILITY)){
                 int doorlevel = getDoorByLocation(location).getLevel();
                 int tripwirelevel = stack.getItemMeta().getEnchantLevel(Enchantment.DURABILITY);
