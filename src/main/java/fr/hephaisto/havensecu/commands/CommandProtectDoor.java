@@ -14,7 +14,7 @@ public class CommandProtectDoor implements CommandExecutor {
             Player player = (Player)sender;
             if (player.isOp()){
                 if(args.length != 1){
-                    player.sendMessage("§aExecution: /setirondoor <level> (1 à 5)");
+                    player.sendMessage("§aExecution: /protectdoor <level> (1 à 5)");
                     return false;
                 }
                 int level = Integer.parseInt(args[0]);
