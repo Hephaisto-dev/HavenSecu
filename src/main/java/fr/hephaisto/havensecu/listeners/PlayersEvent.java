@@ -11,22 +11,23 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.ItemStack;
 
 public class PlayersEvent implements Listener {
     @EventHandler
     public void onDoorOpen (PlayerInteractEvent e){
-        if (e.getAction()==Action.RIGHT_CLICK_BLOCK && e.getClickedBlock().getType() == Material.IRON_DOOR){
+        if (e.getHand() == EquipmentSlot.HAND && e.getAction()==Action.RIGHT_CLICK_BLOCK && e.getClickedBlock().getType() == Material.IRON_DOOR){
             Location location = e.getClickedBlock().getLocation();
             Location location1 = new Location(location.getWorld(),location.getX(),location.getY()-1,location.getZ());
             Managers m = Managers.getManagers();
-            if (location1.getBlock().getType() == Material.IRON_DOOR){
-                m.openCloseDoor(location1,m.checkAllowed(location1,e.getPlayer()));
-                e.setCancelled(true);
-
-            }
-            else if (location1.getBlock().getType() != Material.IRON_DOOR){
-                m.openCloseDoor(location,m.checkAllowed(location,e.getPlayer()));
-                e.setCancelled(true);
+            ItemStack stack = e.getPlayer().getInventory().getItemInMainHand();
+            if(stack.getType().equals(Material.MAGENTA_DYE)) {
+                if (location1.getBlock().getType() == Material.IRON_DOOR) {
+                    m.openCloseDoor(location1, m.checkAllowed(location1, e.getPlayer()));
+                } else if (location1.getBlock().getType() != Material.IRON_DOOR) {
+                    m.openCloseDoor(location, m.checkAllowed(location, e.getPlayer()));
+                }
             }
         }
     }

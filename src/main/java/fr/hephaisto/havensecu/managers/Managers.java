@@ -86,21 +86,13 @@ public class Managers {
 
 
     public boolean isDoorOpenNotAllowed (Location location, Player player){
-        if (!containDoorLocation(location)){
-            return false;
-        }
         ItemStack stack = player.getInventory().getItemInMainHand();
-        if (stack.getType() == Material.MAGENTA_DYE) {
-            if (stack.getItemMeta().getEnchants().containsKey(Enchantment.DURABILITY)){
-                int doorlevel = getDoorByLocation(location).getLevel();
-                int tripwirelevel = stack.getItemMeta().getEnchantLevel(Enchantment.DURABILITY);
-                if(doorlevel == tripwirelevel || doorlevel < tripwirelevel){
-                    return false;
-                }
+        if (stack.getItemMeta().getEnchants().containsKey(Enchantment.DURABILITY)){
+            int doorlevel = getDoorByLocation(location).getLevel();
+            int tripwirelevel = stack.getItemMeta().getEnchantLevel(Enchantment.DURABILITY);
+            if(doorlevel == tripwirelevel || doorlevel < tripwirelevel){
+                return false;
             }
-        }
-        else{
-            return false;
         }
         return true;
     }
